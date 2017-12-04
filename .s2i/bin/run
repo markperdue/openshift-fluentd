@@ -1,0 +1,11 @@
+#!/bin/bash
+
+FLUENT_CONF=/etc/config/fluentd.conf
+
+if [ ! -f ${FLUENT_CONF} ]; then
+  echo "${FLUENT_CONF} not mounted"
+  FLUENT_CONF=/opt/app-root/src/fluentd.conf
+  echo "Using built-in ${FLUENT_CONF}"
+fi
+
+/opt/app-root/src/bundle/ruby/2.4.0/bin/fluentd -c ${FLUENT_CONF}
